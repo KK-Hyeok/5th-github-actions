@@ -1,0 +1,28 @@
+name: Runner Information
+run-name: "새 팀원 환영 - 실행자: ${{ github.actor }}"
+on:
+  workflow_dispatch
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: OS 정보
+        run: |
+          echo "uname -a"
+          echo "cat /etc/os-release"
+
+      - name: 사전 설치 도구 버전
+        run: |
+          echo "git --version"
+          echo "docker --version"
+          echo "node --version"
+          echo "python3 --version"
+      - name: 사전 설치 도구 버전
+        run: |
+          echo "=== CPU ==="
+          nproc
+          echo "=== 메모리 ==="
+          free -h
+          echo "=== 디스크 ==="
+          df -h /
