@@ -14,10 +14,10 @@ jobs:
 
       - name: 사전 설치 도구 버전
         run: |
-          echo "git --version"
-          echo "docker --version"
-          echo "node --version"
-          echo "python3 --version"
+          git --version
+          docker --version
+          node --version
+          python3 --version
       - name: 사전 설치 도구 버전
         run: |
           echo "=== CPU ==="
