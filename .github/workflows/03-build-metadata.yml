@@ -3,20 +3,22 @@ on:
   workflow_dispatch
 
 jobs:
-  show-inputs:
+  metadata:
     runs-on: ubuntu-latest
     steps:
       - name: 메타데이터 생성
+        id: meta
         run: |
           SHORT_SHA=$(echo "${{ github.sha }}" | cut -c1-7)
-          ACTOR_UPPER=$(echo "${{ github.actor }}" | tr '[:lower:]' '[:upper:]')
+          BUILD_ID="build-${{ github.run_number }}-$SHORT_SHA"
+          ACTOR_UPPER=$(echo "${{ github.actor }}" | tr 'a-z' 'A-Z')
           TIMESTAMP=$(date +%s)
-          
+
           echo "short_sha=$SHORT_SHA" >> $GITHUB_OUTPUT
+          echo "build_id=$BUILD_ID" >> $GITHUB_OUTPUT
           echo "actor_upper=$ACTOR_UPPER" >> $GITHUB_OUTPUT
           echo "timestamp=$TIMESTAMP" >> $GITHUB_OUTPUT
-          echo "build_id=build-${{ github.run_number }}-$SHORT_SHA" >> $GITHUB_OUTPUT
-          
+
       - name: 메타데이터 출력
         run: |
           echo "=== 빌드 메타데이터 ==="
@@ -31,7 +33,3 @@ jobs:
           echo "Arch: ${{ runner.arch }}"
           echo "Repository: ${{ github.repository }}"
           echo "Branch: ${{ github.ref_name }}"
-
-
-
-          
