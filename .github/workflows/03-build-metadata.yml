@@ -9,14 +9,13 @@ jobs:
       - name: 메타데이터 생성
         run: |
           SHORT_SHA=$(echo "${{ github.sha }}" | cut -c1-7)
-          echo "SHORT_SHA=$SHORT_SHA" >> $GITHUB_OUTPUT
-
           ACTOR_UPPER=$(echo "${{ github.actor }}" | tr '[:lower:]' '[:upper:]')
-          echo "ACTOR_UPPER=$ACTOR_UPPER" >> $GITHUB_OUTPUT
-
-          echo "BUILD_ID=build-${{ github.run_number }}-$SHORT_SHA" >> $GITHUB_OUTPUT
-      
-          echo "TIMESTAMP=$(date +%s)" >> $GITHUB_OUTPUT
+          TIMESTAMP=$(date +%s)
+          
+          echo "short_sha=$SHORT_SHA" >> $GITHUB_OUTPUT
+          echo "actor_upper=$ACTOR_UPPER" >> $GITHUB_OUTPUT
+          echo "timestamp=$TIMESTAMP" >> $GITHUB_OUTPUT
+          echo "build_id=build-${{ github.run_number }}-$SHORT_SHA" >> $GITHUB_OUTPUT
           
       - name: 메타데이터 출력
         run: |
