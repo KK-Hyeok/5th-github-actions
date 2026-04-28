@@ -1,25 +1,6 @@
 name: Build Metadata Generator
 on:
-  workflow_dispatch:
-    inputs:
-      username:
-        description: '사용자 이름'
-        required: true
-        default: 'guest'
-        type: string
-      env:
-        description: '배포 환경'
-        required: true
-        default: 'staging'
-        type: choice
-        options:
-          - staging
-          - production
-      send_notification:
-        description: '알림 발송 여부'
-        required: false
-        default: true
-        type: boolean
+  workflow_dispatch
 
 jobs:
   show-inputs:
